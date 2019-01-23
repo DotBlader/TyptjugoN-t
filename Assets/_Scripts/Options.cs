@@ -8,7 +8,7 @@ public class Options : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        onOff = 0;
+        onOff = PlayerPrefs.GetInt("påAv");
     }
 
     // Update is called once per frame

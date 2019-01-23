@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Next.unity
     guid: e922ce61ec988414e88a511e3d60640a
+  - enabled: 1
+    path: Assets/_Scenes/SpelTest.unity
+    guid: 2d8dc280f1db9574bb2e1f684c873cac
   m_configObjects: {}
