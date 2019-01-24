@@ -6,17 +6,16 @@ using UnityEngine.UI;
 public class SpelTest : MonoBehaviour
 {
     public GameObject options;
-    public GameObject mainPause;
+    public GameObject mainPause; //objekt för pausmenyerna
     public GameObject pauseMenu;
 
-    private bool paused = false;
-
-    public Text text;
-    private float timer;
+    private bool paused = false; //bool för om spelet är pausat eller ej
+    
     // Start is called before the first frame update
     void Start()
     {
-        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false); //ser till att spelet inte är pausat när man börjar
         mainPause.SetActive(false);
         options.SetActive(false);
     }
@@ -24,42 +23,39 @@ public class SpelTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer = Time.time;
-        text.text = Mathf.Round(timer).ToString(); 
-        transform.Rotate(1, 1, 1, Space.World);
 
-        if (Input.GetKeyDown(KeyCode.Escape) && paused == false)
+        if (Input.GetKeyDown(KeyCode.Escape) && paused == false) //om man klickar på escape och spelet inte är pausat
         {
             PauseGame();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && paused == true)
+        else if (Input.GetKeyDown(KeyCode.Escape) && paused == true) //om man klickar på escape och spelet är pausat
         {
             Continue();
         }
     }
-    public void PauseGame()
+    public void PauseGame() //Pausar spelet
     {
-        paused = true;
-        pauseMenu.SetActive(true);
+        paused = true; //visar att tiden är pausad
+        pauseMenu.SetActive(true); //sätter på pausmenyn
         mainPause.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 0f; //tiden stannar
     }
     public void Continue()
     {
-        Time.timeScale = 1f;
-        pauseMenu.SetActive(false);
+        Time.timeScale = 1f; //sätter på tiden till normal fart
+        pauseMenu.SetActive(false); //stänger av hela pausmenyn
         mainPause.SetActive(false);
         options.SetActive(false);
-        paused = false;
+        paused = false; //visar att spelet inte längre är pausat
     }
-    public void Options()
+    public void Options() //för att gå in i optionsmenyn från pausmenyn
     {
-        options.SetActive(true);
+        options.SetActive(true); //sätter på options och stänger av huvudpausmenyn
         mainPause.SetActive(false);
     }
-    public void MainPaused()
+    public void MainPaused() //när man går in i huvudpausmenyn från optionsmenyn
     {
-        mainPause.SetActive(true);
+        mainPause.SetActive(true); //stänger av optionsmenyn och sätter på huvudpausmenyn
         options.SetActive(false);
     }
 }

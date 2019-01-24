@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement; //måste ha access till scenemanagement
 
 public class SceneHanterare : MonoBehaviour
 {
-    public void SceneChanger(string namn)
+    public void SceneChanger(string namn) //funktion för att ändra scene, med string för namnet på scenen
     {
-        SceneManager.LoadScene(namn);
+        SceneManager.LoadScene(namn); //laddar scenen med namnet 
     }
-    public void Exit()
+    public void Exit() //funktion för att avsluta spelet
     {
-        Application.Quit();
+        #if UNITY_EDITOR //om unityeditorn finns
+            UnityEditor.EditorApplication.isPlaying = false; //sluta spela spelet från editorn
+        #else
+            Application.Quit(); 
+        #endif
     }
 }
